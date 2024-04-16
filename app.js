@@ -33,6 +33,16 @@ app.get("/add-blog", (req, res) => {
       console.log(err);
     });
 });
+// view Blogs
+app.get("/all-blog", (req, res) => {
+  Blog.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 app.listen(4000);
 // middle for static files
