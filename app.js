@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 // mongoose and mongo sandbox routes
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({
-    title: "new blog",
+    title: "2nd blog",
     snippet: "about my new blog",
     body: "This is my new first blog",
   });
@@ -36,6 +36,16 @@ app.get("/add-blog", (req, res) => {
 // view Blogs
 app.get("/all-blog", (req, res) => {
   Blog.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+// view single blog
+app.get("/single-blog", (req, res) => {
+  Blog.findById("661dff1d89f75e239bdce9ee")
     .then((result) => {
       res.send(result);
     })
