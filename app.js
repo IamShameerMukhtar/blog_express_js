@@ -36,6 +36,7 @@ app.use(morgan("dev"));
 app.get("/", (req, res) => {
   res.redirect("/blogs");
 });
+
 // view blogs
 app.get("/blogs", (req, res) => {
   Blog.find()
@@ -47,11 +48,13 @@ app.get("/blogs", (req, res) => {
       console.log(err);
     });
 });
+
+// post blogs
 app.post("/blogs", (req, res) => {
   const blog = new Blog(req.body);
   blog
     .save()
-    .then((result) => {
+    .then(() => {
       res.redirect("/blogs");
     })
     .catch((err) => {
@@ -59,12 +62,40 @@ app.post("/blogs", (req, res) => {
     });
 });
 
-app.get("/about", (req, res) => {
-  res.render("about", { title: "About" });
-});
-
+// create
 app.get("/blogs/create", (req, res) => {
   res.render("create", { title: "Create" });
+});
+
+// View single Blog
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("Details", { title: "Blog Details", blog: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// Delete Blogs
+
+app.delete("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findByIdAndDelete(id)
+    .then(() => {
+      res.json({ redirect: "/blogs" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// about
+
+app.get("/about", (req, res) => {
+  res.render("about", { title: "About" });
 });
 
 //404 page

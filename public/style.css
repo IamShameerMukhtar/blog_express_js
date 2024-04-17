@@ -55,9 +55,33 @@
     }
 
     /* index styles */
-
+.single{
+  display: block;
+  margin: 40px 0px;
+  padding-left: 30px;
+  border-left: 6px solid crimson;
+}
+a:hover h3{
+  color: crimson;
+}
     /* details styles */
+.details{
+  position: relative;
+}
+.delete{
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50px;
+  padding: 8px;
+  border: 1px solid crimson;
+  margin-right: 100px;
+}
+.delete:hover{
+  cursor: pointer;
+  box-shadow: 1px 2px 3px crimson;
 
+}
     /* create styles */
  form{
       max-width: 400px;
