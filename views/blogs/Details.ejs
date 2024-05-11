@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<%- include("./partials/head.ejs") %>
+<%- include("../partials/head.ejs") %>
 <body>
-<%- include('./partials/nav.ejs') %>
+<%- include('../partials/nav.ejs') %>
 
 
   
@@ -15,7 +15,9 @@
 <h1><%=blog.title%></h1>
 <p><%=blog.snippet%></p>
 <p><%=blog.body%></p>
-<a class="delete" data-doc="<%=blog._id %>">Delete</a>
+<a class="delete" data-doc="<%=blog._id %>">
+  <img src="/Trashcan.svg" alt="delete icon">
+</a>
    
  </div>
 <script>
@@ -34,6 +36,6 @@ console.log(err);
 
 
 
-<%- include("./partials/foot.ejs") %>
+<%- include("../partials/foot.ejs") %>
 </body>
 </html>
